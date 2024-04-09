@@ -1,10 +1,10 @@
 import { listTables } from "../database/utils";
 
 export async function load() {
-    
-    const tables = await listTables();
+    // check if authenticated or not
 
+    const tables = await listTables();
     return {
-        tables:tables
+        tables: tables
     };
 }
