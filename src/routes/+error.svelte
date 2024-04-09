@@ -2,4 +2,4 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>Landing page: {$page.data.tables}</h1>
+<h1>Error page: {$page.error?.message}</h1>
