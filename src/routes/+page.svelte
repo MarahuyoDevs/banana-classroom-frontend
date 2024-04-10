@@ -2,4 +2,4 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>Landing page: {$page.data.tables}</h1>
+<h1>Landing page</h1>

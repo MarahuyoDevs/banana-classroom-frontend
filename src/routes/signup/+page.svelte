@@ -18,9 +18,11 @@
 </script>
 
 <main class="flex h-screen">
-	<aside class="hidden items-center justify-center border sm:flex sm:w-1/2">sidebar</aside>
+	<aside class="hidden h-full items-center justify-center border sm:flex sm:w-1/2">
+		<img src="/banana-character.gif" alt="" />
+	</aside>
 	<form
-		class="flex w-full flex-col items-center justify-center gap-3 border p-4 sm:w-1/2"
+		class="flex h-full w-full flex-col items-center justify-center gap-3 border p-4 sm:w-1/2"
 		method="POST"
 		use:enhance
 	>

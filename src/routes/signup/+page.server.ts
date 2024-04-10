@@ -1,8 +1,10 @@
 import type { PageServerLoad, Actions } from "./$types.js";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
+import { UserSchema } from "../../database/schemas.js";
+import { createUser } from "../../database/crud/user.js";
  
 export const load: PageServerLoad = async () => {
   return {
@@ -26,9 +28,14 @@ export const actions: Actions = {
         
       })      
     }
+    // send form to backend
+    try{
+      await createUser(UserSchema.parse({...form.data, role: form.data.userType === "student" ? "student" : "instructor"}))
+    }catch(e){
+      throw new Error('Failed to create user')
+    }
+    
+    redirect(307,'/signin')
 
-    return {
-      form,
-    };
   },
 };

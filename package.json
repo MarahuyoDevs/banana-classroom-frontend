@@ -20,8 +20,10 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@testing-library/jest-dom": "^6.4.2",
 		"@testing-library/svelte": "^4.1.0",
+		"@types/bcrypt": "^5.0.2",
 		"@types/eslint": "^8.56.0",
 		"@types/node": "^20.12.6",
+		"@types/uuid": "^9.0.8",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
 		"@vitest/ui": "^1.4.0",
@@ -47,15 +49,18 @@
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "^3.549.0",
 		"@sveltejs/adapter-vercel": "^5.2.0",
+		"bcrypt": "^5.1.1",
 		"bits-ui": "^0.21.2",
 		"clsx": "^2.1.0",
 		"formsnap": "^1.0.0",
+		"jose": "^5.2.4",
 		"lucide-svelte": "^0.366.0",
 		"mode-watcher": "^0.3.0",
 		"svelte-sonner": "^0.3.21",
 		"sveltekit-superforms": "^2.12.4",
 		"tailwind-merge": "^2.2.2",
 		"tailwind-variants": "^0.2.1",
+		"uuid": "^9.0.1",
 		"zod": "^3.22.4"
 	}
 }
