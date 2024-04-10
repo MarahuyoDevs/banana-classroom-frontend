@@ -2,6 +2,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
+	import Reload from 'svelte-radix/Reload.svelte';
 	import { toast } from 'svelte-sonner';
 	import { formSchema, type FormSchema } from './schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
@@ -16,7 +17,8 @@
 	});
 	$: {
 		page.subscribe((value) => {
-			if (value.status >= 400 && value.form.message == 'Invalid email or password') {
+			if (value.status >= 400) {
+				formLoading = false;
 				toast.error(value.form.message, {
 					description: 'Please check your email and password and try again.',
 					action: {
@@ -28,6 +30,7 @@
 		});
 	}
 	const { form: formData, enhance, errors } = form;
+	let formLoading = false;
 </script>
 
 <main class="flex h-screen">
@@ -38,6 +41,7 @@
 		class="flex h-full w-full flex-col items-center justify-center gap-3 border p-4 sm:w-1/2"
 		method="POST"
 		use:enhance
+		on:submit={() => (formLoading = true)}
 	>
 		<h1>Welcome</h1>
 		<div class="flex w-full gap-5">
@@ -65,7 +69,15 @@
 				<Input {...attrs} bind:value={$formData.password} type="password" />
 			</Form.Control>
 		</Form.Field>
-		<Form.Button class="w-full">Sign in</Form.Button>
+		{#if !formLoading}
+			<Form.Button class="w-full">Sign in</Form.Button>
+		{:else}
+			<Button type="button" disabled class="w-full">
+				<Reload class="mr-2 h-4 w-4 animate-spin" />
+				Please wait
+			</Button>
+		{/if}
+
 		<Button href="/signup" variant="link">Don't have an account?</Button>
 	</form>
 </main>

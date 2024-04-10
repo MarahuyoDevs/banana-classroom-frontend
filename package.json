@@ -56,6 +56,7 @@
 		"jose": "^5.2.4",
 		"lucide-svelte": "^0.366.0",
 		"mode-watcher": "^0.3.0",
+		"svelte-radix": "^1.1.0",
 		"svelte-sonner": "^0.3.21",
 		"sveltekit-superforms": "^2.12.4",
 		"tailwind-merge": "^2.2.2",

@@ -32,6 +32,9 @@ dependencies:
   mode-watcher:
     specifier: ^0.3.0
     version: 0.3.0(svelte@4.2.12)
+  svelte-radix:
+    specifier: ^1.1.0
+    version: 1.1.0(svelte@4.2.12)
   svelte-sonner:
     specifier: ^0.3.21
     version: 0.3.21(svelte@4.2.12)
@@ -5001,6 +5004,14 @@ packages:
       svelte: 4.2.12
       typescript: 5.4.4
     dev: true
+
+  /svelte-radix@1.1.0(svelte@4.2.12):
+    resolution: {integrity: sha512-kyE9wZiJV937INGb+wiBkAjmGtQUUYRPkVL2Q+/gj+9Vog1Ewd2wNvNmpNMUd+c+euxoc5u5YZMuCUgky9EUPw==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      svelte: 4.2.12
+    dev: false
 
   /svelte-sonner@0.3.21(svelte@4.2.12):
     resolution: {integrity: sha512-OodylZ4ZwX4XNnpujEGzUiX66aIwve4QulI7qNmKIw49LIfAxV1LTQaJ6Xj5KsNqWz72NsO1txxV3im3021vEg==}
