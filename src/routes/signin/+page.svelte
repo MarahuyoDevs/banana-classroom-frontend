@@ -16,8 +16,14 @@
 	});
 	$: {
 		page.subscribe((value) => {
-			if(value.status === 400){
-				toast.error(value.form.message)
+			if (value.status >= 400 && value.form.message == 'Invalid email or password') {
+				toast.error(value.form.message, {
+					description: 'Please check your email and password and try again.',
+					action: {
+						label: 'Close',
+						onClick: () => console.log('close the window')
+					}
+				});
 			}
 		});
 	}

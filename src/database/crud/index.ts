@@ -1,1 +1,1 @@
-export {createUser,getUser,updateUser} from './user'
+export { createUser, getUser, updateUser } from './user';
