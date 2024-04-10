@@ -2,17 +2,26 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
+	import { toast } from 'svelte-sonner';
 	import { formSchema, type FormSchema } from './schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	export let data: { form: SuperValidated<Infer<FormSchema>> };
 	let signInAs: string = 'student';
 	const form = superForm(data.form, {
 		validators: zodClient(formSchema),
 		dataType: 'form'
 	});
-
-	const { form: formData, enhance } = form;
+	$: {
+		page.subscribe((value) => {
+			if(value.status === 400){
+				toast.error(value.form.message)
+			}
+		});
+	}
+	const { form: formData, enhance, errors } = form;
 </script>
 
 <main class="flex h-screen">

@@ -23,10 +23,10 @@ export const actions: Actions = {
           ...form,
           errors: {
             ...form.errors,
-            email: "User does not exist",
+            email: "Invalid email or password",
           },
         },
-        message: "User does not exist",
+        message: "Invalid email or password",
       })
     }
     if(!(await bcrypt.compare(form.data.password,dbUser.password))){
@@ -35,10 +35,10 @@ export const actions: Actions = {
           ...form,
           errors: {
             ...form.errors,
-            password: "Invalid password",
+            password: "Invalid email or password",
           },
         },
-        message: "Invalid password",
+        message: "Invalid email or password",
       })
     }
     const token = await jwtEncode({email:dbUser.email,role:dbUser.role})
