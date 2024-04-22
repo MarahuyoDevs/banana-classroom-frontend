@@ -19,6 +19,7 @@
 
 	$: {
 		page.subscribe((value) => {
+			console.log(value);
 			if (value.status >= 400) {
 				formLoading = false;
 				toast.error(value.form.message, {

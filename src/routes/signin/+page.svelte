@@ -18,6 +18,7 @@
 	$: {
 		page.subscribe((value) => {
 			if (value.status >= 400) {
+				console.log(value);
 				formLoading = false;
 				toast.error(value.form.message, {
 					description: 'Please check your email and password and try again.',
