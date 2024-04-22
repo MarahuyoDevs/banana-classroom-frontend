@@ -20,7 +20,16 @@ export const actions: Actions = {
       const dbUser = await getUser(form.data.email);
 
       if (!(await bcrypt.compare(form.data.password, dbUser.password))) {
-        throw new Error('Invalid email or password')
+        throw {
+          heading: 'Invalid email or password',
+          message: "Please make sure you have entered the correct email and password."
+        }
+      }
+      if (dbUser.role !== form.data.userType) {
+        throw {
+          heading: 'Invalid role',
+          message: "Please make sure you have selected the right role."
+        }
       }
       const token = await jwtEncode({ email: dbUser.email, role: dbUser.role })
       // convert to base 64
@@ -33,7 +42,7 @@ export const actions: Actions = {
     } catch (e) {
       return fail(400, {
         form: form,
-        message: "Invalid email or password",
+        message: e,
       })
     }
     redirect(303, "/home")

@@ -4,6 +4,14 @@ import { redirect, type Handle } from '@sveltejs/kit';
 const UNPROTECTED_PATHS = ['/', '/signin', '/signup'];
 
 export const handle: Handle = async ({ event, resolve }) => {
+	if (event.url.searchParams.get('signout') === 'true') {
+		console.log("logging out")
+		event.cookies.set('token', "", {
+			path: '/',
+			maxAge: 0
+		});
+		return await resolve(event);
+	}
 	if (!UNPROTECTED_PATHS.includes(event.url.pathname)) {
 		try {
 			const token = event.cookies.get('token');
