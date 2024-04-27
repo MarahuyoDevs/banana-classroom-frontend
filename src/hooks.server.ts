@@ -1,4 +1,4 @@
-import { jwtDecode } from '$lib/utils';
+import { jwtDecode } from '$lib/security';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 const UNPROTECTED_PATHS = ['/', '/signin', '/signup'];
@@ -18,7 +18,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			if (!token) {
 				throw new Error('No token found');
 			}
-			const decodedBase64Token = Buffer.from(token, 'base64').toString('utf-8');
+			const decodedBase64Token = atob(token);
 			const decodedToken = await jwtDecode(decodedBase64Token);
 			return await resolve(event);
 		} catch (e) {

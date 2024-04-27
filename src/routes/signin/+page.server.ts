@@ -5,7 +5,7 @@ import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
 import { getUser } from "../../database/crud/user.js";
 import bcrypt from 'bcrypt'
-import { jwtDecode, jwtEncode } from "$lib/utils.js";
+import { jwtEncode } from "$lib/security";
 
 export const load: PageServerLoad = async () => {
   return {
@@ -33,7 +33,7 @@ export const actions: Actions = {
       }
       const token = await jwtEncode({ email: dbUser.email, role: dbUser.role })
       // convert to base 64
-      const base64Token = Buffer.from(token).toString('base64')
+      const base64Token = btoa(token)
       // save to cookie
       event.cookies.set('token', base64Token, {
         path: '/', maxAge: 60 * 60 * 24, secure: true,

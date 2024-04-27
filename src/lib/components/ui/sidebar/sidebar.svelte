@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EnvelopeOpen from 'svelte-radix/EnvelopeOpen.svelte';
 	import Button from '../button/button.svelte';
-	export let userType: 'student' | 'instructor' = 'student';
+	export let userType: 'student' | 'instructor' | undefined = 'student';
 </script>
 
 <aside class="hidden md:block w-1/4 rounded-l-md border p-4 px-8">

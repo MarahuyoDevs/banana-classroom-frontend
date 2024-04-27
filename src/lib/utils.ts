@@ -2,11 +2,6 @@ import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
-import * as jose from 'jose';
-
-const secret = new TextEncoder().encode(
-	'cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2'
-);
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -60,20 +55,4 @@ export const flyAndScale = (
 	};
 };
 
-export const jwtEncode = async (data: Record<string, any>) => {
-	return await new jose.SignJWT(data)
-		.setProtectedHeader({ alg: 'HS256' })
-		.setIssuedAt()
-		.setIssuer('https://banana-classroom.vercel.app')
-		.setAudience('https://banana-classroom.vercel.app')
-		.setExpirationTime('1h')
-		.sign(secret);
-};
 
-export const jwtDecode = async (token: string) => {
-	return await jose.jwtVerify(token, secret, {
-		algorithms: ['HS256'],
-		issuer: 'https://banana-classroom.vercel.app',
-		audience: 'https://banana-classroom.vercel.app'
-	});
-};

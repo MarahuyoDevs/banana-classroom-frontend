@@ -36,6 +36,7 @@ export const actions: Actions = {
 				})
 			);
 		} catch (e) {
+			console.log(e)
 			throw new Error('Failed to create user');
 		}
 

@@ -6,6 +6,8 @@
 	import Sidebar from '$lib/components/ui/sidebar/sidebar.svelte';
 
 	export let data: LayoutData;
+
+	
 </script>
 
 <div>
@@ -13,7 +15,7 @@
 	<Toaster />
 	<div class="flex flex-row p-4 md:px-8">
 		{#if data.isLoggedIn}
-			<Sidebar userType="instructor" />
+			<Sidebar userType={data.userType || 'student'} />
 		{/if}
 		<div
 			class={`${data.isLoggedIn ? 'w-full border md:w-3/4 md:rounded-r-md' : 'w-full'}  p-4 px-8`}
