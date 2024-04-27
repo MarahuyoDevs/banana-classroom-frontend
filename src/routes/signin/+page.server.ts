@@ -3,7 +3,7 @@ import { fail, redirect } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
-import { getUser } from "../../database/crud/user.js";
+import { getUser } from "../../lib/database/crud/user.js";
 import bcrypt from 'bcrypt'
 import { jwtEncode } from "$lib/security";
 

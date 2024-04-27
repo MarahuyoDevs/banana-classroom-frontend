@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit'
 import type { LayoutServerLoad } from './$types'
-import { getUser } from '../database/crud'
+import { getUser } from '../lib/database/crud'
 import { jwtDecode } from '$lib/security'
 
 interface returnType {

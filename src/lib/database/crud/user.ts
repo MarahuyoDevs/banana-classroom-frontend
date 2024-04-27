@@ -57,6 +57,36 @@ export async function getUser(
 	};
 }
 
+export async function getUserByID(id: string) {
+	const client = await createDynamoDbClient()
+
+	const getUser = new GetItemCommand({
+		TableName: 'users',
+		Key: {
+			id: { S: id }
+		}
+	});
+
+	const response = await client.send(getUser)
+
+	if (response.$metadata.httpStatusCode !== 200) {
+		throw new Error('Failed to get user');
+	}
+
+	return {
+		id: response.Item?.id.S!,
+		name: response.Item?.name.S!,
+		email: response.Item?.email.S!,
+		password: response.Item?.password.S!,
+		role: response.Item?.role.S! === 'student' ? 'student' : 'instructor',
+		classrooms: response.Item?.classrooms.SS! || [],
+		quizzes: response.Item?.quizzes.SS! || [],
+		quizzesResults: response.Item?.quizzes_result.SS! || [],
+		createAt: response.Item?.created_at.S!,
+		updatedAt: response.Item?.updated_at.S!
+	};
+}
+
 export async function updateUser(id: string, user: z.infer<typeof UserSchema>) {
 	// update user in database
 }

@@ -3,8 +3,8 @@ import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { formSchema } from './schema';
 import { zod } from 'sveltekit-superforms/adapters';
-import { UserSchema } from '../../database/schemas.js';
-import { createUser } from '../../database/crud/user.js';
+import { UserSchema } from '../../lib/database/schemas.js';
+import { createUser } from '../../lib/database/crud/user.js';
 
 export const load: PageServerLoad = async () => {
 	return {

@@ -85,7 +85,7 @@
 							</li>
 						{:else if userType === 'instructor'}
 							<li>
-								<Button href="/classroom/create" variant="outline" class="w-full justify-start">
+								<Button href="/classrooms/create" variant="outline" class="w-full justify-start">
 									<EnvelopeOpen class="mr-2 h-4 w-4" />
 									<span>Create Classroom</span>
 								</Button>
@@ -94,6 +94,12 @@
 								<Button href="/classrooms" variant="outline" class="w-full justify-start">
 									<EnvelopeOpen class="mr-2 h-4 w-4" />
 									<span>Classrooms</span>
+								</Button>
+							</li>
+							<li>
+								<Button href="/quiz" variant="outline" class="w-full justify-start">
+									<EnvelopeOpen class="mr-2 h-4 w-4" />
+									<span>Quizzes</span>
 								</Button>
 							</li>
 							<li>
