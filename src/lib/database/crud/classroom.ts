@@ -1,6 +1,6 @@
 import { ClassroomSchema } from '$lib/database/schemas'
 import { createDynamoDbClient } from '../utils'
-import { GetItemCommand, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb'
+import { BatchGetItemCommand, GetItemCommand, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb'
 import { getUser, getUserByID } from './user'
 import { z } from "zod";
 
@@ -26,6 +26,30 @@ export const createClassroom = async (input: z.infer<typeof ClassroomSchema>) =>
     }
 
     await joinClassroom(input.instructor, input.id)
+
+}
+
+interface DynamodbKeyType {
+    S: string
+}
+
+export const batchReadClassrooms = async (keyList: DynamodbKeyType[]) => {
+
+    const ids = keyList.map((value) => ({ id: value }))
+
+    const client = await createDynamoDbClient();
+
+    const items = await client.send(new BatchGetItemCommand({
+        RequestItems: {
+            classrooms: {
+                Keys: ids
+            }
+        }
+    }))
+
+
+    return items.Responses
+
 
 }
 

@@ -14,12 +14,12 @@
 		{#each data.classrooms as classroom}
 			<Card.Root>
 				<Card.Header>
-					<Card.Title>{classroom.name}</Card.Title>
-					<Card.Description>{classroom.instructor}</Card.Description>
+					<Card.Title>{classroom.name.S}</Card.Title>
+					<Card.Description>{classroom.instructor.S}</Card.Description>
 				</Card.Header>
-				<Card.Content>{classroom.description}</Card.Content>
+				<Card.Content>{classroom.description.S}</Card.Content>
 				<Card.Footer class="w-full">
-					<Button href={`/classrooms/${classroom.id}`} class="w-full">Visit</Button>
+					<Button href={`/classrooms/${classroom.id.S}`} class="w-full">Visit</Button>
 				</Card.Footer>
 			</Card.Root>
 		{/each}
