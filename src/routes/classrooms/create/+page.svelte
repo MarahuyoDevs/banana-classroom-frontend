@@ -7,9 +7,10 @@
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import { Reload } from 'svelte-radix';
 
 	export let data: { form: SuperValidated<Infer<typeof ClassroomSchema>> };
-
+	let isSubmitting: boolean = false;
 	const form = superForm(data.form, {
 		validators: zodClient(ClassroomSchema),
 		dataType: 'form',
@@ -24,13 +25,12 @@
 	<Form.Field {form} name="name">
 		<Form.Control let:attrs>
 			<div class="grid w-full items-center gap-3">
-				<Label for="email">Title</Label>
+				<Label>Title</Label>
 				<Input
 					{...attrs}
 					bind:value={$formData.name}
 					class="w-full"
-					type="email"
-					id="email"
+					type="text"
 					placeholder="Title of the classroom"
 				/>
 			</div>
@@ -39,7 +39,7 @@
 	<Form.Field {form} name="description">
 		<Form.Control let:attrs>
 			<div class="grid w-full items-center gap-3">
-				<Label for="email">Title</Label>
+				<Label>Title</Label>
 				<Textarea
 					{...attrs}
 					bind:value={$formData.description}
@@ -50,7 +50,14 @@
 		</Form.Control>
 	</Form.Field>
 	<div class="flex w-full max-w-md items-center gap-3">
-		<Button>Create classroom</Button>
+		{#if isSubmitting}
+			<Button type="button" disabled class="w-full">
+				<Reload class="mr-2 h-4 w-4 animate-spin" />
+				Please wait
+			</Button>
+		{:else}
+			<Button on:click={() => !isSubmitting} type="submit">Create classroom</Button>
+		{/if}
 		<Button href="/home" variant="outline">Return to home</Button>
 	</div>
 </form>

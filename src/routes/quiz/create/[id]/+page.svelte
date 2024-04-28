@@ -17,9 +17,6 @@
 	};
 
 	let questionType: string = 'identification';
-	$: {
-		console.log(questionType);
-	}
 	const switchChoices = (e: HTMLFormElement) => {
 		console.log(e.target);
 	};
@@ -36,11 +33,7 @@
 		<Textarea name="description" placeholder="Enter the description of the quiz"></Textarea>
 	</div>
 	<div class="flex flex-col gap-5">
-		<Select.Root
-			onSelectedChange={(v) => {
-				questionType = v?.value || 'identification';
-			}}
-		>
+		<Select.Root onSelectedChange={(v) => (questionType = v?.value || 'identification')}>
 			<Select.Trigger class="w-[180px]">
 				<Select.Value placeholder="Select a type" />
 			</Select.Trigger>

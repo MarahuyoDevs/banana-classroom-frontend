@@ -4,9 +4,9 @@ export interface User {
 	email: string;
 	password: string;
 	role: string;
-	classrooms: string[];
-	quizzes: string[];
-	quizzesResults: string[];
+	classrooms: string[] | Classroom[];
+	quizzes: string[] | Quiz[];
+	quizzesResults: string[] | QuizResult[];
 	createAt: string;
 	updatedAt: string;
 }
@@ -16,7 +16,7 @@ export interface Classroom {
 	name: string;
 	description: string;
 	instructor: string;
-	students: string[];
+	students: string[] | User[];
 	quizzes: string[];
 	createdAt: string;
 	updatedAt: string;
@@ -57,4 +57,10 @@ export interface QuizResult {
 	answers: QuizAnswer[];
 	createdAt: string;
 	updatedAt: string;
+}
+
+export interface AuthTokenCredentials {
+	email: string
+	role: string
+	iat: number
 }

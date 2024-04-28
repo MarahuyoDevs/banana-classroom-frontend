@@ -15,9 +15,9 @@ export async function createUser(user: z.infer<typeof UserSchema>) {
 			email: { S: user.email },
 			password: { S: hashedPassword },
 			role: { S: user.role },
-			classrooms: { SS: ['<empty>'] },
-			quizzes: { SS: ['<empty>'] },
-			quizzes_result: { SS: ['<empty>'] },
+			classrooms: { L: [] },
+			quizzes: { L: [] },
+			quizzes_result: { L: [] },
 			created_at: { S: user.createAt },
 			updated_at: { S: user.updatedAt }
 		}
@@ -43,15 +43,17 @@ export async function getUser(
 	if (response.$metadata.httpStatusCode !== 200) {
 		throw new Error('Failed to get user');
 	}
+
+
 	return {
 		id: response.Item?.id.S!,
 		name: response.Item?.name.S!,
 		email: response.Item?.email.S!,
 		password: response.Item?.password.S!,
 		role: response.Item?.role.S! === 'student' ? 'student' : 'instructor',
-		classrooms: response.Item?.classrooms.SS! || [],
-		quizzes: response.Item?.quizzes.SS! || [],
-		quizzesResults: response.Item?.quizzes_result.SS! || [],
+		classrooms: response.Item?.classrooms.L || [],
+		quizzes: response.Item?.quizzes.L || [],
+		quizzesResults: response.Item?.quizzes_result.L || [],
 		createAt: response.Item?.created_at.S!,
 		updatedAt: response.Item?.updated_at.S!
 	};
