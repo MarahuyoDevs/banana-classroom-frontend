@@ -19,19 +19,19 @@ export const actions: Actions = {
     try {
       const dbUser = await getUser(form.data.email);
 
-      if (!(await bcrypt.compare(form.data.password, dbUser.password))) {
+      if (!(await bcrypt.compare(form.data.password, dbUser.password.S))) {
         throw {
           heading: 'Invalid email or password',
           message: "Please make sure you have entered the correct email and password."
         }
       }
-      if (dbUser.role !== form.data.userType) {
+      if (dbUser.role.S !== form.data.userType) {
         throw {
           heading: 'Invalid role',
           message: "Please make sure you have selected the right role."
         }
       }
-      const token = await jwtEncode({ email: dbUser.email, role: dbUser.role })
+      const token = await jwtEncode({ email: dbUser.email.S, role: dbUser.role.S })
       // convert to base 64
       const base64Token = btoa(token)
       // save to cookie

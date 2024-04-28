@@ -1,12 +1,16 @@
+import { AttributeValue } from "@aws-sdk/client-dynamodb";
+
+AttributeValue
+
 export interface User {
 	id: string;
 	name: string;
 	email: string;
 	password: string;
 	role: string;
-	classrooms: string[] | Classroom[];
-	quizzes: string[] | Quiz[];
-	quizzesResults: string[] | QuizResult[];
+	classrooms: string[] | AttributeValue[];
+	quizzes: string[] | AttributeValue[];
+	quizzesResults: string[] | AttributeValue[];
 	createAt: string;
 	updatedAt: string;
 }
@@ -16,7 +20,7 @@ export interface Classroom {
 	name: string;
 	description: string;
 	instructor: string;
-	students: string[] | User[];
+	students: string[] | AttributeValue[];
 	quizzes: string[];
 	createdAt: string;
 	updatedAt: string;

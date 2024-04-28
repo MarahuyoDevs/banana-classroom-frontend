@@ -2,7 +2,7 @@ import { UserSchema } from '../schemas';
 import { z } from 'zod';
 import { createDynamoDbClient } from '../utils';
 import bcrypt from 'bcrypt';
-import { PutItemCommand, GetItemCommand } from '@aws-sdk/client-dynamodb';
+import { PutItemCommand, GetItemCommand, AttributeValue, BatchGetItemCommand } from '@aws-sdk/client-dynamodb';
 
 export async function createUser(user: z.infer<typeof UserSchema>) {
 	const client = await createDynamoDbClient();
@@ -31,7 +31,7 @@ export async function createUser(user: z.infer<typeof UserSchema>) {
 
 export async function getUser(
 	email: z.infer<typeof UserSchema>['email']
-): Promise<z.infer<typeof UserSchema>> {
+) {
 	const client = await createDynamoDbClient();
 	const getUser = new GetItemCommand({
 		TableName: 'users',
@@ -44,19 +44,25 @@ export async function getUser(
 		throw new Error('Failed to get user');
 	}
 
+	return response.Item;
+}
 
-	return {
-		id: response.Item?.id.S!,
-		name: response.Item?.name.S!,
-		email: response.Item?.email.S!,
-		password: response.Item?.password.S!,
-		role: response.Item?.role.S! === 'student' ? 'student' : 'instructor',
-		classrooms: response.Item?.classrooms.L || [],
-		quizzes: response.Item?.quizzes.L || [],
-		quizzesResults: response.Item?.quizzes_result.L || [],
-		createAt: response.Item?.created_at.S!,
-		updatedAt: response.Item?.updated_at.S!
-	};
+export const batchReadUserByEmail = async (keyList: AttributeValue[]) => {
+
+	const ids = keyList.map((values) => ({ email: { S: values.S } }))
+
+	const client = await createDynamoDbClient()
+
+	const items = await client.send(new BatchGetItemCommand({
+		RequestItems: {
+			users: {
+				Keys: ids
+			}
+		}
+	}))
+
+	return items.Responses
+
 }
 
 export async function getUserByID(id: string) {
@@ -81,9 +87,9 @@ export async function getUserByID(id: string) {
 		email: response.Item?.email.S!,
 		password: response.Item?.password.S!,
 		role: response.Item?.role.S! === 'student' ? 'student' : 'instructor',
-		classrooms: response.Item?.classrooms.SS! || [],
-		quizzes: response.Item?.quizzes.SS! || [],
-		quizzesResults: response.Item?.quizzes_result.SS! || [],
+		classrooms: response.Item?.classrooms.L! || [],
+		quizzes: response.Item?.quizzes.L! || [],
+		quizzesResults: response.Item?.quizzes_result.L! || [],
 		createAt: response.Item?.created_at.S!,
 		updatedAt: response.Item?.updated_at.S!
 	};

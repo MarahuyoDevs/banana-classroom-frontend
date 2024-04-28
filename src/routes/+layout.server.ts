@@ -17,7 +17,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
     if (token) {
         const user = await getUser((await jwtDecode(token)).email)
         returnResponse.isLoggedIn = true
-        returnResponse.userType = user.role
+        returnResponse.userType = user.role.S
     } else {
         returnResponse.isLoggedIn = false
     }

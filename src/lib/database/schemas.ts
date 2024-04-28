@@ -25,12 +25,12 @@ export const ClassroomSchema = z.object({
 	updatedAt: z.string().default(new Date().toISOString())
 });
 
-const QuestionSchema = z.object({
+export const QuestionSchema = z.object({
 	id: z.string().default(uuidv4()),
-	type: z.enum(['multiple', 'identification']),
+	type: z.enum(['multipleChoice', 'identification']),
 	text: z.string(),
 	index: z.string(),
-	options: z.array(z.string()),
+	options: z.optional(z.array(z.string())),
 	answer: z.string(),
 	createdAt: z.string().default(new Date().toISOString()),
 	updatedAt: z.string().default(new Date().toISOString())

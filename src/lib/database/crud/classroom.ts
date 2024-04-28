@@ -1,6 +1,6 @@
 import { ClassroomSchema } from '$lib/database/schemas'
 import { createDynamoDbClient } from '../utils'
-import { BatchGetItemCommand, GetItemCommand, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb'
+import { AttributeValue, BatchGetItemCommand, GetItemCommand, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb'
 import { getUser, getUserByID } from './user'
 import { z } from "zod";
 
@@ -33,9 +33,9 @@ interface DynamodbKeyType {
     S: string
 }
 
-export const batchReadClassrooms = async (keyList: DynamodbKeyType[]) => {
+export const batchReadClassrooms = async (keyList: AttributeValue[]) => {
 
-    const ids = keyList.map((value) => ({ id: value }))
+    const ids = keyList.map((value) => ({ id: { S: value.S } }))
 
     const client = await createDynamoDbClient();
 
@@ -47,7 +47,6 @@ export const batchReadClassrooms = async (keyList: DynamodbKeyType[]) => {
         }
     }))
 
-
     return items.Responses
 
 
@@ -58,6 +57,28 @@ export const joinClassroom = async (email: string, classroomID: string) => {
 
     const user = await getUser(email)
 
+    const classroom = await readClassroomByID(classroomID)
+
+    console.log(user)
+    console.log(classroom)
+    console.log(classroom?.quizzes.L)
+
+    await client.send(new UpdateItemCommand({
+        TableName: 'users',
+        Key: {
+            email: { S: email }
+        },
+        ExpressionAttributeNames: {
+            "#Q": "quizzes"
+        },
+        ExpressionAttributeValues: {
+            ":v": { L: classroom?.quizzes.L || [] },
+            ":e": { L: [] }
+        },
+        UpdateExpression: "SET #Q = list_append(if_not_exists(#Q,:e),:v)"
+    }))
+
+    console.log('passed to')
 
     await client.send(new UpdateItemCommand({
         TableName: 'users',
@@ -75,7 +96,7 @@ export const joinClassroom = async (email: string, classroomID: string) => {
         UpdateExpression: "SET #C = list_append(#C,:v)"
     }))
 
-    if (user.role === "student") {
+    if (user.role.S === "student") {
         await client.send(new UpdateItemCommand({
             TableName: 'classrooms',
             Key: {
@@ -85,7 +106,7 @@ export const joinClassroom = async (email: string, classroomID: string) => {
                 "#S": "students"
             },
             ExpressionAttributeValues: {
-                ":v": { L: [{ S: user.email }] },
+                ":v": { L: [{ S: email }] },
             },
             UpdateExpression: "SET #S = list_append(#S, :v)"
         }))
@@ -110,22 +131,7 @@ export const readClassroomByID = async (id: string) => {
         throw new Error('Failed to get classroom');
     }
 
-    const students = []
-
-    for (let studentEmail of response.Item?.students?.SS || []) {
-        students.push(await getUser(studentEmail))
-    }
-
-    return {
-        id: response.Item?.id?.S || '',
-        name: response.Item?.name?.S,
-        description: response.Item?.description?.S,
-        instructor: response.Item?.instructor.S,
-        students: students.map((value) => value.role !== 'instructor') || [],
-        quizzes: [],
-        created_at: response.Item?.created_at?.S,
-        updated_at: response.Item?.updated_at?.S
-    }
+    return response.Item
 }
 
 export const deleteClassroomByID = async (id: string) => {

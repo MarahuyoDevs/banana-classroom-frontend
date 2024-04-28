@@ -1,5 +1,7 @@
 import { getUser } from "$lib/database/crud";
 import { readClassroomByID } from "$lib/database/crud/classroom";
+import { batchReadQuizByID } from "$lib/database/crud/quiz";
+import { batchReadUserByEmail } from "$lib/database/crud/user";
 import { jwtDecode } from "$lib/security";
 import type { PageServerLoad } from "./$types";
 
@@ -9,15 +11,14 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
     const classroom = await readClassroomByID(params.id)
 
-    const students = []
-    for (let student in classroom.students) {
-        students.push(student)
-    }
+    const students = await batchReadUserByEmail(classroom?.students.L)
 
+    const quizzes = await batchReadQuizByID(classroom?.quizzes.L)
     return {
         user: user,
         classroom: classroom,
-        students: students,
+        quizzes: quizzes?.quizzes,
+        students: students?.users,
     }
 
 }

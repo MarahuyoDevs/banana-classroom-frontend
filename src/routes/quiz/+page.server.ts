@@ -1,5 +1,5 @@
 import { getUser } from "$lib/database/crud";
-import { batchReadClassrooms, readClassroomByID } from "$lib/database/crud/classroom";
+import { batchReadQuizByID } from "$lib/database/crud/quiz";
 import { jwtDecode } from "$lib/security";
 import type { PageServerLoad } from "./$types";
 
@@ -7,15 +7,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
     const user = await getUser((await jwtDecode(atob(cookies.get('token') || ''))).email)
 
-    if (!user) {
-        return {}
-    }
-
-    const response = (await batchReadClassrooms(user.classrooms.L))
+    const quizzes = await batchReadQuizByID(user.quizzes.L)
 
     return {
         user: user,
-        classrooms: response.classrooms
+        quizzes: quizzes.quizzes
     }
-
 }
