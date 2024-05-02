@@ -22,7 +22,7 @@
 	</Card.Content>
 	<Card.Footer class="flex-row gap-5">
 		{#if data.user.role.S === 'student'}
-			<Button href="/quiz/start/${data.quiz?.id.S}">Start Quiz</Button>
+			<Button href="/quiz/start/{data.quiz?.id.S}">Start Quiz</Button>
 		{/if}
 		<Button href="/home" variant="outline">Return Home</Button>
 	</Card.Footer>

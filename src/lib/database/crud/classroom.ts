@@ -59,10 +59,6 @@ export const joinClassroom = async (email: string, classroomID: string) => {
 
     const classroom = await readClassroomByID(classroomID)
 
-    console.log(user)
-    console.log(classroom)
-    console.log(classroom?.quizzes.L)
-
     await client.send(new UpdateItemCommand({
         TableName: 'users',
         Key: {
@@ -77,8 +73,6 @@ export const joinClassroom = async (email: string, classroomID: string) => {
         },
         UpdateExpression: "SET #Q = list_append(if_not_exists(#Q,:e),:v)"
     }))
-
-    console.log('passed to')
 
     await client.send(new UpdateItemCommand({
         TableName: 'users',

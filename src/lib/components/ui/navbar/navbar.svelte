@@ -66,6 +66,12 @@
 								</Button>
 							</li>
 							<li>
+								<Button href="/quiz" variant="outline" class="w-full justify-start">
+									<EnvelopeOpen class="mr-2 h-4 w-4" />
+									<span>Quizzes</span>
+								</Button>
+							</li>
+							<li>
 								<Button href="/results" variant="outline" class="w-full justify-start">
 									<EnvelopeOpen class="mr-2 h-4 w-4" />
 									<span>Results</span>
