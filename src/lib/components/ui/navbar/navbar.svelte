@@ -7,8 +7,8 @@
 </script>
 
 <nav class="flex items-center justify-between gap-5 border p-4 px-8">
-	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="px-0 text-2xl">
-		Banana Classroom
+	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
+		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom
 	</Button>
 	<ul class="hidden gap-5 md:flex">
 		{#if isLoggedIn}
