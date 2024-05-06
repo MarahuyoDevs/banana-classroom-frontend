@@ -38,11 +38,11 @@
 </script>
 
 <main class="flex h-screen">
-	<aside class="hidden h-full items-center justify-center md:rounded-l-md border md:flex md:w-1/2">
+	<aside class="hidden h-full items-center justify-center border md:flex md:w-1/2 md:rounded-l-md">
 		<img src="/banana-character.gif" alt="" />
 	</aside>
 	<form
-		class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md md:rounded-r-md border p-4 md:w-1/2"
+		class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border-none p-4 md:w-1/2 md:rounded-r-md md:border"
 		method="POST"
 		use:enhance
 		on:submit={() => (formLoading = true)}

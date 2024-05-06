@@ -40,7 +40,7 @@
 		<img src="/banana-character.gif" alt="" />
 	</aside>
 	<form
-		class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border p-4 md:w-1/2 md:rounded-r-md"
+		class="flex h-full w-full flex-col items-center justify-center gap-3 rounded-md border-none p-4 md:w-1/2 md:rounded-r-md md:border"
 		method="POST"
 		use:enhance
 		on:submit={() => (formLoading = true)}
