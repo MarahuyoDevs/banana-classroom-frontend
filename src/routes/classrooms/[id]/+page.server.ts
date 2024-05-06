@@ -10,10 +10,17 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     const user = await getUser((await jwtDecode(atob(cookies.get('token') || ''))).email)
 
     const classroom = await readClassroomByID(params.id)
+    let students = undefined
+    let quizzes = undefined
+    if (classroom?.students.L) {
+        students = await batchReadUserByEmail(classroom?.students.L)
+    }
 
-    const students = await batchReadUserByEmail(classroom?.students.L)
+    if (classroom?.quizzes.L) {
+        quizzes = await batchReadQuizByID(classroom?.quizzes.L)
+    }
 
-    const quizzes = await batchReadQuizByID(classroom?.quizzes.L)
+
     return {
         user: user,
         classroom: classroom,

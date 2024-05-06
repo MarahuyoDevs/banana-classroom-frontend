@@ -8,7 +8,7 @@
 	export let data: PageData;
 </script>
 
-<Card.Root>
+<Card.Root class="border-none md:border">
 	<Card.Header>
 		<Card.Title class="scroll-m-20 py-4 pb-8 text-4xl font-extrabold tracking-tight lg:text-5xl">
 			{data.classroom.name?.S}
@@ -23,19 +23,21 @@
 				<Tabs.Trigger value="quiz">Quiz</Tabs.Trigger>
 			</Tabs.List>
 			<Tabs.Content value="students">
-				{#each data?.students as student}
-					<Card.Root>
-						<Card.Header>
-							<Card.Title>{student?.name.S}</Card.Title>
-							<Card.Description>{student?.email.S}</Card.Description>
-						</Card.Header>
-						<Card.Content></Card.Content>
-						<Card.Footer></Card.Footer>
-					</Card.Root>
-				{/each}
+				<div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+					{#each data?.students as student}
+						<Card.Root>
+							<Card.Header>
+								<Card.Title>{student?.name.S}</Card.Title>
+								<Card.Description>{student?.email.S}</Card.Description>
+							</Card.Header>
+							<Card.Content></Card.Content>
+							<Card.Footer></Card.Footer>
+						</Card.Root>
+					{/each}
+				</div>
 			</Tabs.Content>
 			<Tabs.Content value="quiz">
-				<div class="flex flex-col gap-5">
+				<div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 					{#each data?.quizzes as quiz}
 						<Card.Root>
 							<Card.Header>

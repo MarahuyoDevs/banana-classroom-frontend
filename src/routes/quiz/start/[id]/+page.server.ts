@@ -10,16 +10,13 @@ export const load: PageServerLoad = async ({ params }) => {
 export const actions: Actions = {
     default: async (event) => {
         const quiz = await readQuizByID(event.params.id)
-
         let score = 0;
-
         for (let [index, answer] of (await event.request.formData()).entries()) {
             let question = quiz.questions.L?.at(parseInt(index) - 1);
             if (question.M.answer.S === answer) {
                 score += 1;
             }
         }
-        // save this as a quiz result.
         console.log(score);
     }
 }
