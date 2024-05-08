@@ -12,20 +12,20 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     const classroom = await readClassroomByID(params.id)
     let students = undefined
     let quizzes = undefined
-    if (classroom?.students.L) {
-        students = await batchReadUserByEmail(classroom?.students.L)
+    if (classroom?.students?.L) {
+        students = await batchReadUserByEmail(classroom?.students.L || [])
     }
 
-    if (classroom?.quizzes.L) {
-        quizzes = await batchReadQuizByID(classroom?.quizzes.L)
+    if (classroom?.quizzes?.L) {
+        quizzes = await batchReadQuizByID(classroom?.quizzes.L || [])
     }
 
 
     return {
         user: user,
         classroom: classroom,
-        quizzes: quizzes?.quizzes,
-        students: students?.users,
+        quizzes: quizzes?.quizzes || [],
+        students: students?.users || [],
     }
 
 }

@@ -78,7 +78,9 @@ export const addQuizToUser = async (userEmail: string, quizId: string) => {
 }
 
 export const batchReadQuizByID = async (keyList: AttributeValue[]) => {
-
+    if (keyList === undefined || keyList.length === 0) {
+        return
+    }
     const ids = keyList.map((values) => ({ id: { S: values.S } }))
 
     const client = await createDynamoDbClient()

@@ -48,7 +48,9 @@ export async function getUser(
 }
 
 export const batchReadUserByEmail = async (keyList: AttributeValue[]) => {
-
+	if (keyList === undefined || keyList.length === 0) {
+		return
+	}
 	const ids = Array.from(new Set(keyList.map((values) => values.S))).map((value) => ({ email: { S: value } }))
 
 	const client = await createDynamoDbClient()
