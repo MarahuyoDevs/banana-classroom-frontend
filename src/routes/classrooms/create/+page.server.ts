@@ -40,14 +40,17 @@ export const actions: Actions = {
 
         const user = await getUser(token.email)
 
-        await createClassroom(ClassroomSchema.parse({
-            id: uuidv4(),
-            name: form.data.name,
-            description: form.data.description,
-            instructor: user.email,
-        }))
+        if (user) {
+            await createClassroom(ClassroomSchema.parse({
+                id: uuidv4(),
+                name: form.data.name,
+                description: form.data.description,
+                instructor: user.email.S,
+            }))
 
-        redirect(308, '/classrooms')
+            redirect(308, '/classrooms')
+        }
+
 
     },
 };

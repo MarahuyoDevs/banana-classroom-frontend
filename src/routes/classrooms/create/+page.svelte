@@ -39,7 +39,7 @@
 	<Form.Field {form} name="description">
 		<Form.Control let:attrs>
 			<div class="grid w-full items-center gap-3">
-				<Label>Title</Label>
+				<Label>Description</Label>
 				<Textarea
 					{...attrs}
 					bind:value={$formData.description}
