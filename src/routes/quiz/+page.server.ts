@@ -6,9 +6,11 @@ import type { PageServerLoad } from "./$types";
 export const load: PageServerLoad = async ({ cookies }) => {
 
     const user = await getUser((await jwtDecode(atob(cookies.get('token') || ''))).email)
+    
     if (!user) {
         return
     }
+
     const quizzes = await batchReadQuizByID(user?.quizzes?.L || [])
 
     return {
