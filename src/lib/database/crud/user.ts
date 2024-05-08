@@ -2,7 +2,7 @@ import { UserSchema } from '../schemas';
 import { z } from 'zod';
 import { createDynamoDbClient } from '../utils';
 import bcrypt from 'bcrypt';
-import { PutItemCommand, GetItemCommand, AttributeValue, BatchGetItemCommand } from '@aws-sdk/client-dynamodb';
+import { PutItemCommand, GetItemCommand, AttributeValue, BatchGetItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 
 export async function createUser(user: z.infer<typeof UserSchema>) {
 	const client = await createDynamoDbClient();
@@ -99,4 +99,35 @@ export async function getUserByID(id: string) {
 
 export async function updateUser(id: string, user: z.infer<typeof UserSchema>) {
 	// update user in database
+}
+
+export async function saveQuizResultIdUserById(userEmail: string, resultID: string) {
+	const client = await createDynamoDbClient();
+
+	const user = await getUser(userEmail);
+
+	if (!user) {
+		return
+	}
+
+	user.quizzes_result.L?.push({ S: resultID })
+
+	const item = new UpdateItemCommand({
+		TableName: 'users',
+		Key: {
+			email: { S: userEmail }
+		},
+		ExpressionAttributeNames: {
+			"#Q": "quizzes_result"
+		},
+		ExpressionAttributeValues: {
+			":v": { L: user.quzzes_result?.L || [] },
+			":e": { L: [] }
+		},
+		UpdateExpression: "SET #Q = list_append(if_not_exists(#Q,:e),:v)"
+	})
+
+	const response = await client.send(item)
+
+	return resultID;
 }
