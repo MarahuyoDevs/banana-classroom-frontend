@@ -12,6 +12,7 @@ export const createQuiz = async (userEmail: string, data: z.infer<typeof QuizSch
             classroomId: { S: data.classroomId },
             name: { S: data.name },
             description: { S: data.description },
+            duration: { N: data.duration?.toString() || '0' },
             questions: {
                 L: data.questions.map(question => ({
                     M: {

@@ -42,6 +42,7 @@ export const QuizSchema = z.object({
 	name: z.string(),
 	description: z.string(),
 	questions: z.array(QuestionSchema),
+	duration: z.number().optional(),
 	createdAt: z.string().default(new Date().toISOString()),
 	updatedAt: z.string().default(new Date().toISOString())
 });

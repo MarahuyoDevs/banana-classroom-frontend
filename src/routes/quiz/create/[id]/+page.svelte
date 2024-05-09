@@ -6,6 +6,7 @@
 	import { type Question as QuestionType } from '$lib/database/types';
 	import { v4 as uuidv4 } from 'uuid';
 	import Question from '$lib/components/ui/question/question.svelte';
+	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
 
 	let questionsCounter: string[] = [];
 	let questionCounterSingleNumber: number = 0;
@@ -16,9 +17,7 @@
 	};
 
 	let questionType: string = 'identification';
-	const switchChoices = (e: HTMLFormElement) => {
-		console.log(e.target);
-	};
+	let checked: boolean;
 </script>
 
 <h1 class="scroll-m-20 py-8 text-4xl font-extrabold tracking-tight lg:text-5xl">Create a quiz</h1>
@@ -27,6 +26,21 @@
 		<Label for="name">Title</Label>
 		<Input id="name" name="name" placeholder="Enter the title of the quiz" />
 	</div>
+	<div class="grid w-full items-center gap-1.5">
+		<Label for="description">Description</Label>
+		<Textarea id="description" name="description" placeholder="Enter the description of the quiz"
+		></Textarea>
+	</div>
+	<div class="flex w-full flex-row items-center gap-1.5">
+		<Label for="checkDuration">Allow Duration</Label>
+		<Checkbox id="checkDuration" bind:checked />
+	</div>
+	{#if checked}
+		<div class="grid w-1/4 items-center gap-1.5">
+			<Label for="duration">Duration</Label>
+			<Input id="duration" name="duration" type="number" placeholder="Enter minutes" />
+		</div>
+	{/if}
 	<div class="grid w-full items-center gap-1.5">
 		<Label for="description">Description</Label>
 		<Textarea id="description" name="description" placeholder="Enter the description of the quiz"

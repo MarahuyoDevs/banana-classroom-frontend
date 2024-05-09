@@ -50,11 +50,12 @@ export const actions: Actions = {
             classroomId: event.params.id,
             name: form.get('name'),
             questions: questions,
-            description: form.get('description')
+            description: form.get('description'),
+            duration: form.get('duration')?.toString() ? parseInt(form.get('duration')?.toString() || '') : undefined,
         })
 
         const user = await getUser((await jwtDecode(atob(event.cookies.get('token') || ''))).email)
-        await createQuiz(user.email.S, quiz)
+        await createQuiz(user?.email?.S || '', quiz)
 
         redirect(303, `/quiz/${quiz.id}`)
     }
