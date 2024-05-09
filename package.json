@@ -53,6 +53,7 @@
 		"bcrypt": "^5.1.1",
 		"bits-ui": "^0.21.2",
 		"clsx": "^2.1.0",
+		"collect.js": "^4.36.1",
 		"formsnap": "^1.0.0",
 		"jose": "^5.2.4",
 		"lucide-svelte": "^0.366.0",

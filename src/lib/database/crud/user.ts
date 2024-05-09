@@ -111,7 +111,7 @@ export async function saveQuizResultIdUserById(userEmail: string, resultID: stri
 	}
 
 	user.quizzes_result.L?.push({ S: resultID })
-
+	console.log(user.quizzes_result.L);
 	const item = new UpdateItemCommand({
 		TableName: 'users',
 		Key: {
@@ -121,10 +121,9 @@ export async function saveQuizResultIdUserById(userEmail: string, resultID: stri
 			"#Q": "quizzes_result"
 		},
 		ExpressionAttributeValues: {
-			":v": { L: user.quzzes_result?.L || [] },
-			":e": { L: [] }
+			":v": { L: [{ S: resultID }] },
 		},
-		UpdateExpression: "SET #Q = list_append(if_not_exists(#Q,:e),:v)"
+		UpdateExpression: "SET #Q = list_append(#Q,:v)"
 	})
 
 	const response = await client.send(item)

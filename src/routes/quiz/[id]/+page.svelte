@@ -9,7 +9,7 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>
-			{data.quiz?.name.S}
+			{data.quiz?.name?.S}
 		</Card.Title>
 		<Card.Description>
 			Quiz of - <span class="font-bold">{data.classroom?.name?.S}</span>
@@ -17,12 +17,12 @@
 	</Card.Header>
 	<Card.Content>
 		<p>
-			{data.quiz?.description.S}
+			{data.quiz?.description?.S}
 		</p>
 	</Card.Content>
 	<Card.Footer class="flex-row gap-5">
-		{#if data.user.role.S === 'student'}
-			<Button href="/quiz/start/{data.quiz?.id.S}">Start Quiz</Button>
+		{#if data?.user?.role?.S === 'student' && Array.from(new Set(data.results?.map((value) => value.quizID.S !== data.quiz?.id?.S))).every((val) => val)}
+			<Button href="/quiz/start/{data.quiz?.id?.S}">Start Quiz</Button>
 		{/if}
 		<Button href="/home" variant="outline">Return Home</Button>
 	</Card.Footer>

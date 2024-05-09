@@ -57,6 +57,10 @@ export const joinClassroom = async (email: string, classroomID: string) => {
 
     const user = await getUser(email)
 
+    if (!user) {
+        return
+    }
+
     const classroom = await readClassroomByID(classroomID)
 
     await client.send(new UpdateItemCommand({

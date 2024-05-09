@@ -82,7 +82,8 @@ export const batchReadQuizByID = async (keyList: AttributeValue[]) => {
     if (keyList === undefined || keyList.length === 0) {
         return
     }
-    const ids = keyList.map((values) => ({ id: { S: values.S } }))
+    const ids = Array.from(new Set(keyList.map((values) => values.S))).map((value) => ({ id: { S: value } }))
+
 
     const client = await createDynamoDbClient()
 

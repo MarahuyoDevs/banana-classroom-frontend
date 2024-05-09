@@ -1,4 +1,4 @@
-import { GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb"
+import { AttributeValue, BatchGetItemCommand, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb"
 import { QuizResultSchema } from "../schemas"
 import { createDynamoDbClient } from "../utils"
 import type { z } from "zod"
@@ -40,8 +40,25 @@ export const readQuizResult = async (id: string) => {
             id: { S: id }
         }
     })
-    
+
     const response = await client.send(item)
 
     return response.Item
+}
+
+export const batchReadQuizResult = async (keyList: AttributeValue[]) => {
+
+    const ids = keyList.map((value) => ({ id: value }))
+    const client = await createDynamoDbClient();
+
+    const items = await client.send(new BatchGetItemCommand({
+        RequestItems: {
+            quizzesresult: {
+                Keys: ids
+            }
+        }
+    }))
+
+    return items.Responses
+
 }
