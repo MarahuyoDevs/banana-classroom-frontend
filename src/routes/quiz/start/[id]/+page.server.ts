@@ -23,15 +23,15 @@ export const actions: Actions = {
         if (quiz) {
             for (let [index, answer] of (await event.request.formData()).entries()) {
                 let question = quiz.questions.L?.at(parseInt(index) - 1);
-                if (question && question.M) {
-                    if (question.M.answer.S === answer) {
+                if (question && question.M && question.M.answer.S) {
+                    if (question.M.answer.S.toLowerCase().trim() === answer.toString().toLowerCase().trim()) {
                         score += 1;
-                        quizAnswerArray.push({
-                            index: parseInt(index),
-                            answer: answer,
-                            correctAnswer: question.M.answer.S
-                        })
                     }
+                    quizAnswerArray.push({
+                        index: parseInt(index),
+                        answer: answer.toString(),
+                        correctAnswer: question.M.answer.S
+                    })
                 }
             }
         }
