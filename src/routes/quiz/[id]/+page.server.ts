@@ -16,15 +16,19 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
         return
     }
     const classroom = await readClassroomByID(quiz?.classroomId?.S || '')
-    const results = await batchReadQuizResult(user?.quizzes_result?.L || []);
-
-    if (!results) {
-        return
+    let results = undefined;
+    if (user?.quizzes_result?.L?.length > 0) {
+        results = await batchReadQuizResult(user?.quizzes_result?.L || []);
+        if (!results) {
+            return
+        }
     }
     return {
         user: user,
         quiz: quiz,
         classroom: classroom,
-        results: results.quizzesresult
+        results: results?.quizzesresult
     }
+
+
 }
