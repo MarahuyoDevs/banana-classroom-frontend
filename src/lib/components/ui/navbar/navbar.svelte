@@ -6,10 +6,28 @@
 	export let userType: 'student' | 'instructor' = 'student';
 </script>
 
-<nav class="flex items-center justify-between gap-5 border p-4 px-8">
+<nav
+	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-background/40 p-4 px-8 backdrop-blur"
+>
 	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
 		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom
 	</Button>
+	{#if !isLoggedIn}
+		<ul class="hidden flex-row gap-5 md:flex">
+			<li>
+				<Button href="/#home" variant="link">Home</Button>
+			</li>
+			<li>
+				<Button href="/#features" variant="link">Features</Button>
+			</li>
+			<li>
+				<Button href="/#roadmap" variant="link">Roadmap</Button>
+			</li>
+			<li>
+				<Button href="/about" variant="link">About</Button>
+			</li>
+		</ul>
+	{/if}
 	<ul class="hidden gap-5 md:flex">
 		{#if isLoggedIn}
 			<li>

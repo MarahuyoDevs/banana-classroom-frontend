@@ -8,16 +8,14 @@
 	export let data: LayoutData;
 </script>
 
-<div class="font-fredoka">
+<div class="bg-transparent font-fredoka">
 	<Navbar isLoggedIn={data.isLoggedIn} userType={data.userType} />
 	<Toaster />
-	<div class="flex flex-row md:px-8">
+	<div class="flex flex-row">
 		{#if data.isLoggedIn}
 			<Sidebar userType={data.userType || 'student'} />
 		{/if}
-		<div
-			class={`${data.isLoggedIn ? 'w-full  md:w-3/4 md:rounded-r-md md:border' : 'w-full'}  p-4 px-8`}
-		>
+		<div class={`${data.isLoggedIn ? 'w-full  md:w-3/4 md:rounded-r-md md:border' : 'w-full'}`}>
 			<slot />
 		</div>
 	</div>
