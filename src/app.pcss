@@ -49,6 +49,24 @@
 	}
   }
 
+@layer components {
+	.bordered-card {
+		@apply relative block h-64 sm:h-80 lg:h-96;
+	}
+	.bordered-card > .overlay {
+	@apply absolute inset-0 border-2 border-dashed border-white;
+	}
+	.bordered-card > .header {
+	@apply relative flex h-full transform items-end border-2 border-white transition-transform;
+	}
+	.bordered-card > .header > .title {
+	@apply p-4 !pt-0 transition-opacity sm:p-6 lg:p-8;
+	}
+	.bordered-card > .content {
+	@apply absolute transition-opacity sm:p-6 lg:p-8;
+	}
+}
+
 @layer base {
 	* {
 		@apply border-border;
