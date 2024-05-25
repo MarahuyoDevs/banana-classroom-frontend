@@ -8,7 +8,7 @@
 </script>
 
 <nav
-	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-black bg-transparent p-4 px-28 backdrop-blur"
+	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-black bg-transparent p-4 backdrop-blur md:px-28"
 >
 	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
 		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom

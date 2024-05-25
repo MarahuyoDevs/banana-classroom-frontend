@@ -6,8 +6,11 @@
 
 <main class="grid min-h-screen grid-cols-12 bg-gradient-to-br from-yellow-400 to-red-400">
 	<div class="col-span-1" />
-	<section id="home" class="col-span-10 grid min-h-screen w-full grid-cols-2 items-center py-12">
-		<div>
+	<section
+		id="home"
+		class="col-span-10 grid min-h-screen w-full grid-cols-12 items-center py-12 md:grid-cols-2"
+	>
+		<div class="col-span-full md:col-span-1">
 			<h1>A place that you will learn</h1>
 			<p>
 				Banana Classroom is the ultimate online assessment tool designed to elevate the educational
@@ -23,7 +26,7 @@
 				</a>
 			</div>
 		</div>
-		<img class="justify-self-center" src="/banana-character.gif" alt="" />
+		<img class="hidden justify-self-center md:block" src="/banana-character.gif" alt="" />
 	</section>
 	<div class="col-span-1" />
 	<section
@@ -62,10 +65,12 @@
 						</svelte:fragment>
 					</Card>
 					<Card class="col-span-full w-full md:col-span-12">
-						<svelte:fragment slot="header">Feature 4: Personalization</svelte:fragment>
+						<svelte:fragment slot="header">Feature 4: Authorized Roles</svelte:fragment>
 						<svelte:fragment slot="content">
-							We want our users to be more free to express themselves, so we have a profile function
-							where users can style themselves and customize their accounts
+							Our website has the power to assign roles that also have different functions. The
+							instructor role has the ability to create classrooms and quizzes, while the student
+							role can join those classrooms and answer those quizzes. We envision a working system
+							for these roles that helps each other to gain more knowledge.
 						</svelte:fragment>
 					</Card>
 				</div>
@@ -74,18 +79,62 @@
 		</div>
 	</section>
 	<div class="col-span-1" />
-	<section class="col-span-10 grid w-full grid-cols-2 py-12">
-		<div class="col-span-full">
-			<h2 class="border-none">Development History:</h2>
-			<table class="">
-				<thead>
-					<tr>
-						<th>Author</th>
-						<th>Date</th>
-						<th>Message</th>
-					</tr>
-				</thead>
-			</table>
+	<section id="features" class="relative col-span-12 grid w-full grid-cols-2 py-12">
+		<div class="col-span-12 grid w-full grid-cols-12">
+			<div class="col-span-1" />
+			<div class="col-span-10 flex w-full flex-col">
+				<h2 class="border-none">Development Roadmap</h2>
+				<div class="col-span-12 grid grid-cols-12 gap-5 pt-4">
+					<Card class="col-span-12 md:col-span-6">
+						<svelte:fragment slot="header">Roadmap 1: Opportunities</svelte:fragment>
+						<svelte:fragment slot="content">
+							We are an upcoming development team that is looking for a chance to show our skills.
+							Thankfully, a client reached out to us for an offer that would benefit both parties
+							and society. We were given an opportunity to create an environment for users to
+							educate one another and help develop their education.
+						</svelte:fragment>
+					</Card>
+					<Card class="col-span-12 md:col-span-6">
+						<svelte:fragment slot="header">Roadmap 2: Inspirations</svelte:fragment>
+						<svelte:fragment slot="content">
+							Before we started developing, we asked ourselves first, "How should we develop this?"
+							We as a development team never experienced how to create a learning platform. So, we
+							looked for websites that inspired us and helped us form an image of how we should
+							deliver our website to the public. In the end, "Banana Classroom" was born.
+						</svelte:fragment>
+					</Card>
+					<Card class="col-span-12 w-full md:col-span-6">
+						<svelte:fragment slot="header">Roadmap 3: Testing the waters</svelte:fragment>
+						<svelte:fragment slot="content">
+							As we started to develop, we were experimenting with the product. We wanted to make
+							sure that the overall features of our website would benefit our clients, society, and
+							ourselves. As we tried different approaches, we finally found the fitting piece to our
+							puzzle. With a clearer path to our goal, we were dead set on the finish line.
+						</svelte:fragment>
+					</Card>
+					<Card class="col-span-12 w-full md:col-span-6">
+						<svelte:fragment slot="header">Roadmap 4: Developing with rhythm</svelte:fragment>
+						<svelte:fragment slot="content">
+							When we finally found our rhythm, we started creating "Banana Classroom" piece by
+							piece. We split our development group to maximize progress for the sake of our client
+							and our time. Even though we had different roles, we still assisted each other so that
+							no part of the website would be left behind and that, as a team, we were in the same
+							picture at each step.
+						</svelte:fragment>
+					</Card>
+					<Card class="col-span-12 w-full md:col-span-12">
+						<svelte:fragment slot="header">Roadmap 4: Colors & Patterns</svelte:fragment>
+						<svelte:fragment slot="content">
+							After we got our systems up and running, the only task left was the design of our
+							product. At first, we tried a more minimalistic style, but it was too bland and
+							boring. So, we switched it up to a more fun and cartoonish theme. With the help of our
+							clients, we finally finished the design, and with a few more tweaks, "Banana
+							Classroom" was ready to tackle the world.
+						</svelte:fragment>
+					</Card>
+				</div>
+			</div>
+			<div class="col-span-1" />
 		</div>
 	</section>
 	<div class="col-span-1" />
