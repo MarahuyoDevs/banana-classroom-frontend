@@ -8,7 +8,8 @@
 	export let data: LayoutData;
 </script>
 
-<div class="bg-transparent font-fredoka">
+<!--
+<div class="font-fredoka">
 	<Navbar isLoggedIn={data.isLoggedIn} userType={data.userType} />
 	<Toaster />
 	<div class="flex flex-row">
@@ -19,4 +20,10 @@
 			<slot />
 		</div>
 	</div>
+</div>
+-->
+<div class="font-fredoka">
+	<Navbar isLoggedIn={data.isLoggedIn} userType={data.userType} />
+	<Toaster />
+	<slot />
 </div>

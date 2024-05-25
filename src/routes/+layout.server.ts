@@ -5,7 +5,7 @@ import { jwtDecode } from '$lib/security'
 
 interface returnType {
     isLoggedIn: boolean
-    userType: 'instructor' | 'student'
+    userType: 'instructor' | 'student' | string
 }
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
@@ -17,7 +17,9 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
     if (token) {
         const user = await getUser((await jwtDecode(token)).email)
         returnResponse.isLoggedIn = true
-        returnResponse.userType = user.role.S
+        if (user?.role.S) {
+            returnResponse.userType = user.role.S
+        }
     } else {
         returnResponse.isLoggedIn = false
     }

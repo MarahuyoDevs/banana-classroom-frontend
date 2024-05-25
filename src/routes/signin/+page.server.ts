@@ -18,14 +18,13 @@ export const actions: Actions = {
     const form = await superValidate(event, zod(formSchema));
     try {
       const dbUser = await getUser(form.data.email);
-
-      if (!(await bcrypt.compare(form.data.password, dbUser.password.S))) {
+      if (!(await bcrypt.compare(form.data.password, dbUser?.password?.S || ''))) {
         throw {
           heading: 'Invalid email or password',
           message: "Please make sure you have entered the correct email and password."
         }
       }
-      if (dbUser.role.S !== form.data.userType) {
+      if (dbUser?.role.S !== form.data.userType) {
         throw {
           heading: 'Invalid role',
           message: "Please make sure you have selected the right role."

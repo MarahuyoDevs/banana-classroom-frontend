@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
+	import CartoonButton from '$lib/components/hyper/button/cartoon_button.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
 	import Reload from 'svelte-radix/Reload.svelte';
@@ -33,7 +33,7 @@
 	let formLoading = false;
 </script>
 
-<main class="flex h-screen">
+<main class="flex h-screen bg-gradient-to-br from-yellow-400 to-red-400">
 	<aside
 		class="hidden h-full items-center justify-center rounded-md border md:flex md:w-1/2 md:rounded-l-md"
 	>
@@ -48,15 +48,19 @@
 		<h1>Welcome</h1>
 		<div class="flex w-full gap-5">
 			<input type="text" name="userType" bind:value={signInAs} class="hidden" />
-			<Button
+
+			<CartoonButton
+				type="button"
 				class="w-full"
-				variant={signInAs === 'student' ? 'default' : 'outline'}
-				on:click={() => (signInAs = 'student')}>Student</Button
+				variant={signInAs === 'student' ? 'default' : 'secondary'}
+				on:click={() => (signInAs = 'student')}>Student</CartoonButton
 			>
-			<Button
+
+			<CartoonButton
+				type="button"
 				class="w-full"
-				variant={signInAs === 'instructor' ? 'default' : 'outline'}
-				on:click={() => (signInAs = 'instructor')}>Instructor</Button
+				variant={signInAs === 'instructor' ? 'default' : 'secondary'}
+				on:click={() => (signInAs = 'instructor')}>Instructor</CartoonButton
 			>
 		</div>
 		<Form.Field {form} name="email" class="w-full">
@@ -72,14 +76,15 @@
 			</Form.Control>
 		</Form.Field>
 		{#if !formLoading}
-			<Form.Button class="w-full">Sign in</Form.Button>
+			<CartoonButton type="submit" class="w-full" variant="default">Sign In</CartoonButton>
 		{:else}
-			<Button type="button" disabled class="w-full">
+			<CartoonButton type="button" disabled class="w-full">
 				<Reload class="mr-2 h-4 w-4 animate-spin" />
 				Please wait
-			</Button>
+			</CartoonButton>
 		{/if}
-
-		<Button href="/signup" variant="link">Don't have an account?</Button>
+		<a href="/signup" class="w-full">
+			<CartoonButton class="w-full" variant="secondary">Don't have an account?</CartoonButton>
+		</a>
 	</form>
 </main>

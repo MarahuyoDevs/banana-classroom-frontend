@@ -1,13 +1,14 @@
 <script lang="ts">
 	import EnvelopeOpen from 'svelte-radix/EnvelopeOpen.svelte';
 	import Button from '../button/button.svelte';
+	import CartoonButton from '$lib/components/hyper/button/cartoon_button.svelte';
 	import * as Sheet from '$lib/components/ui/sheet';
 	export let isLoggedIn: boolean = false;
-	export let userType: 'student' | 'instructor' = 'student';
+	export let userType: 'student' | 'instructor' | string = 'student';
 </script>
 
 <nav
-	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-background/40 p-4 px-8 backdrop-blur"
+	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-black bg-transparent p-4 px-28 backdrop-blur"
 >
 	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
 		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom
@@ -37,10 +38,14 @@
 			</li>
 		{:else}
 			<li>
-				<Button href="/signin" variant="default">Sign In</Button>
+				<a href="/signin">
+					<CartoonButton color="white">Sign in</CartoonButton>
+				</a>
 			</li>
 			<li>
-				<Button href="/signup" variant="outline">Sign Up</Button>
+				<a href="/signup">
+					<CartoonButton variant="secondary" color="white">Sign up</CartoonButton>
+				</a>
 			</li>
 		{/if}
 	</ul>
