@@ -8,7 +8,7 @@
 </script>
 
 <nav
-	class="sticky top-0 z-50 flex w-full items-center justify-between gap-5 border border-b border-border/40 bg-black bg-transparent p-4 backdrop-blur md:px-28"
+	class="border-border/4 sticky top-0 z-50 flex w-full items-center justify-between gap-5 bg-black p-4 md:px-28"
 >
 	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
 		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom
@@ -68,7 +68,7 @@
 					>
 				</Button>
 			</Sheet.Trigger>
-			<Sheet.Content side="left">
+			<Sheet.Content side="left" class="flex flex-col gap-5 bg-yellow-800">
 				{#if isLoggedIn}
 					<Sheet.Header>
 						<Sheet.Title>Main Menu</Sheet.Title>
@@ -156,14 +156,41 @@
 					</Sheet.Footer>
 				{:else}
 					<Sheet.Header>
-						<Sheet.Title>Main Menu</Sheet.Title>
+						<Sheet.Title class="border-none">Main Menu</Sheet.Title>
 					</Sheet.Header>
 					<ul class="flex flex-col gap-2">
 						<li>
-							<Button class="w-full" href="/signin" variant="default">Sign In</Button>
+							<a href="/signin">
+								<CartoonButton class="w-full" variant="default">Sign In</CartoonButton>
+							</a>
 						</li>
 						<li>
-							<Button class="w-full" href="/signup" variant="outline">Sign Up</Button>
+							<a href="/signup">
+								<CartoonButton class="w-full" variant="secondary">Sign Up</CartoonButton>
+							</a>
+						</li>
+					</ul>
+					<h4>Links:</h4>
+					<ul class="flex flex-col gap-2">
+						<li>
+							<a href="/#home">
+								<CartoonButton class="w-full" variant="secondary">Home</CartoonButton>
+							</a>
+						</li>
+						<li>
+							<a href="/#features">
+								<CartoonButton class="w-full" variant="secondary">Features</CartoonButton>
+							</a>
+						</li>
+						<li>
+							<a href="/#roadmap">
+								<CartoonButton class="w-full" variant="secondary">Road map</CartoonButton>
+							</a>
+						</li>
+						<li>
+							<a href="/#about">
+								<CartoonButton class="w-full" variant="secondary">About</CartoonButton>
+							</a>
 						</li>
 					</ul>
 				{/if}
