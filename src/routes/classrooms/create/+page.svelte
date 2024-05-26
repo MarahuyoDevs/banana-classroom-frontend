@@ -7,6 +7,7 @@
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import CartoonButton from '$lib/components/hyper/button/cartoon_button.svelte';
 	import { Reload } from 'svelte-radix';
 
 	export let data: { form: SuperValidated<Infer<typeof ClassroomSchema>> };
@@ -51,13 +52,15 @@
 	</Form.Field>
 	<div class="flex w-full max-w-md items-center gap-3">
 		{#if isSubmitting}
-			<Button type="button" disabled class="w-full">
+			<CartoonButton type="button" disabled class="w-full">
 				<Reload class="mr-2 h-4 w-4 animate-spin" />
 				Please wait
-			</Button>
+			</CartoonButton>
 		{:else}
-			<Button on:click={() => !isSubmitting} type="submit">Create classroom</Button>
+			<CartoonButton on:click={() => !isSubmitting} type="submit">Create classroom</CartoonButton>
 		{/if}
-		<Button href="/home" variant="outline">Return to home</Button>
+		<a href="/home">
+			<CartoonButton variant="secondary">Return to home</CartoonButton>
+		</a>
 	</div>
 </form>

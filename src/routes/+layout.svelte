@@ -23,7 +23,16 @@
 </div>
 -->
 <div class="font-fredoka">
-	<Navbar isLoggedIn={data.isLoggedIn} userType={data.userType} />
 	<Toaster />
-	<slot />
+	{#if data.isLoggedIn}
+		<div class="flex flex-row">
+			<Sidebar userType={data.userType || 'student'} userData={data.userData} />
+			<div class="w-full bg-gradient-to-br from-yellow-400 to-red-400 p-8">
+				<slot />
+			</div>
+		</div>
+	{:else}
+		<Navbar isLoggedIn={data.isLoggedIn} userType={data.userType} />
+		<slot />
+	{/if}
 </div>
