@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 </script>
 
-<form class="flex flex-col gap-5" method="POST">
+<form class="flex min-h-screen flex-col gap-5" method="POST">
 	<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Join a classroom</h1>
 	<div class="grid w-full items-center gap-1.5">
 		<Label for="classroomID">Classroom ID</Label>

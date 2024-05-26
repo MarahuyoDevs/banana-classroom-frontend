@@ -5,8 +5,7 @@
 	export let userType: 'student' | 'instructor' | undefined | string = 'student';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	export let userData: any = undefined;
-	let userName = <string[]>userData.name.S.split(' ');
-	console.log();
+	let userName = <string>userData.name.S;
 </script>
 
 <aside
@@ -19,17 +18,13 @@
 					<Button builders={[builder]} href="/home" class="!p-0" variant="ghost">
 						<Avatar.Root>
 							<Avatar.Fallback>
-								{userName.at(0)?.split('').at(0)?.toUpperCase()}{userName
-									.at(1)
-									?.split('')
-									.at(0)
-									?.toUpperCase()}
+								{userName.split(' ').at(0)?.at(0)}{userName.split(' ').at(-1)?.at(0) || ''}
 							</Avatar.Fallback>
 						</Avatar.Root>
 					</Button>
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">
-					<p>{userName.join(' ')}</p>
+					<p>{userName}</p>
 				</Tooltip.Content>
 			</Tooltip.Root>
 		</span>
