@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
     }
     const classroom = await readClassroomByID(quiz?.classroomId?.S || '')
     let results = undefined;
-    if (user?.quizzes_result?.L?.length > 0) {
+    if (user?.quizzes_result?.L?.length || 0 > 0) {
         results = await batchReadQuizResult(user?.quizzes_result?.L || []);
         if (!results) {
             return

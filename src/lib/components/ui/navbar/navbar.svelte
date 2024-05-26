@@ -8,7 +8,9 @@
 </script>
 
 <nav
-	class="border-border/4 sticky top-0 z-50 flex w-full items-center justify-between gap-5 bg-black p-4 md:px-28"
+	class="border-border/4 sticky top-0 z-50 flex w-full items-center justify-between gap-5 bg-black p-4 {isLoggedIn
+		? ''
+		: 'md:px-28'}"
 >
 	<Button variant="link" href={isLoggedIn ? '/home' : '/'} class="gap-2 px-0 text-2xl">
 		<img class="h-8 w-8 rounded-md" src="/banana_character_icon.png" alt="test" /> Banana Classroom
@@ -30,13 +32,7 @@
 		</ul>
 	{/if}
 	<ul class="hidden gap-5 md:flex">
-		{#if isLoggedIn}
-			<li>
-				<Button on:click={() => (window.location.href = '/?signout=true')} variant="outline">
-					Sign Out
-				</Button>
-			</li>
-		{:else}
+		{#if !isLoggedIn}
 			<li>
 				<a href="/signin">
 					<CartoonButton color="white">Sign in</CartoonButton>
@@ -68,7 +64,7 @@
 					>
 				</Button>
 			</Sheet.Trigger>
-			<Sheet.Content side="left" class="flex flex-col gap-5 bg-yellow-800">
+			<Sheet.Content side="left" class="flex flex-col gap-5 overflow-y-auto bg-yellow-800">
 				{#if isLoggedIn}
 					<Sheet.Header>
 						<Sheet.Title>Main Menu</Sheet.Title>

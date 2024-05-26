@@ -11,6 +11,9 @@ export const load: PageServerLoad = async ({ cookies }) => {
     if (!user) {
         return
     }
+    if (user?.quizzes_result?.L?.length === 0) {
+        return
+    }
     const results = await batchReadQuizResult(user?.quizzes_result?.L || []);
     if (!results) {
         return
