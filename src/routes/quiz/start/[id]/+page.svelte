@@ -13,7 +13,7 @@
 	let submitted: boolean;
 
 	onMount(() => {
-		form = document.getElementById('quizForm');
+		form = <HTMLFormElement>document.getElementById('quizForm');
 		if (data?.quiz?.duration?.N) {
 			timer(parseInt(data?.quiz?.duration?.N) * 60).start();
 		}

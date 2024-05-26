@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
     let classrooms = undefined;
 
     if (user.classrooms.L?.length || 0 > 1) {
-        classrooms = await batchReadClassrooms(user.classrooms.L)
+        classrooms = await batchReadClassrooms(user.classrooms.L || [])
     }
     return {
         user: user,
