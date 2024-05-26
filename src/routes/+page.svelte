@@ -141,7 +141,7 @@
 			<div class="col-span-1" />
 		</div>
 	</section>
-	<footer class="col-span-full grid grid-cols-12 bg-black py-24">
+	<footer id="about" class="col-span-full grid grid-cols-12 bg-black py-24">
 		<div class="col-span-1"></div>
 		<div class="col-span-10 grid grid-cols-3 items-center gap-5">
 			<div>

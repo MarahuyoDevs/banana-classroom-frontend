@@ -25,7 +25,7 @@
 				<Button href="/#roadmap" variant="link">Roadmap</Button>
 			</li>
 			<li>
-				<Button href="/about" variant="link">About</Button>
+				<Button href="/#about" variant="link">About</Button>
 			</li>
 		</ul>
 	{/if}
