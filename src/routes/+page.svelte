@@ -11,7 +11,7 @@
 		id="home"
 		class="col-span-10 grid min-h-screen w-full grid-cols-12 items-center py-12 md:grid-cols-2"
 	>
-		<div class="col-span-full md:col-span-1">
+		<div class="md:order-0 order-1 col-span-full md:col-span-1">
 			<h1>A place that you will learn</h1>
 			<p>
 				Banana Classroom is the ultimate online assessment tool designed to elevate the educational
@@ -27,7 +27,11 @@
 				</a>
 			</div>
 		</div>
-		<img class="hidden justify-self-center md:block" src="/banana-character.gif" alt="" />
+		<img
+			class="order-0 col-span-full block justify-self-center md:order-1 md:col-span-1"
+			src="/banana-character.gif"
+			alt=""
+		/>
 	</section>
 	<div class="col-span-1" />
 	<section
