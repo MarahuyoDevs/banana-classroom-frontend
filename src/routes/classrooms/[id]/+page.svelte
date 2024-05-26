@@ -8,19 +8,19 @@
 	export let data: PageData;
 </script>
 
-<Card.Root class="border-none md:border">
+<Card.Root class="border-none bg-transparent md:border">
 	<Card.Header>
 		<Card.Title class="scroll-m-20 py-4 pb-8 text-4xl font-extrabold tracking-tight lg:text-5xl">
-			{data.classroom.name?.S}
+			{data?.classroom?.name?.S}
 		</Card.Title>
-		<Card.Description>{data.classroom.instructor?.S}</Card.Description>
+		<Card.Description>{data.classroom?.instructor?.S}</Card.Description>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-5">
-		<p>{data.classroom.description?.S}</p>
+		<p>{data.classroom?.description?.S}</p>
 		<Tabs.Root>
-			<Tabs.List class="grid w-full grid-cols-2">
-				<Tabs.Trigger value="students">Students</Tabs.Trigger>
-				<Tabs.Trigger value="quiz">Quiz</Tabs.Trigger>
+			<Tabs.List class="grid w-full grid-cols-2 gap-2 bg-transparent text-white">
+				<Tabs.Trigger class="border" value="students">Students</Tabs.Trigger>
+				<Tabs.Trigger class="border" value="quiz">Quiz</Tabs.Trigger>
 			</Tabs.List>
 			<Tabs.Content value="students">
 				<div class="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -45,7 +45,7 @@
 									{quiz.name.S}
 								</Card.Title>
 								<Card.Description>
-									{data.classroom.name.S}
+									{data.classroom?.name.S}
 								</Card.Description>
 							</Card.Header>
 							<Card.Content>{quiz.description.S}</Card.Content>
@@ -58,9 +58,9 @@
 			</Tabs.Content>
 		</Tabs.Root>
 	</Card.Content>
-	{#if data.user.role?.S === 'instructor'}
+	{#if data.user?.role?.S === 'instructor'}
 		<Card.Footer>
-			<Button href="/quiz/create/{data.classroom.id?.S}" variant="secondary">Create a quiz</Button>
+			<Button href="/quiz/create/{data.classroom?.id?.S}" variant="secondary">Create a quiz</Button>
 		</Card.Footer>
 	{/if}
 </Card.Root>

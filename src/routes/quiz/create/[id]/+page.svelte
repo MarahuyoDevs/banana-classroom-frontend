@@ -41,11 +41,6 @@
 			<Input id="duration" name="duration" type="number" placeholder="Enter minutes" />
 		</div>
 	{/if}
-	<div class="grid w-full items-center gap-1.5">
-		<Label for="description">Description</Label>
-		<Textarea id="description" name="description" placeholder="Enter the description of the quiz"
-		></Textarea>
-	</div>
 	<div class="flex flex-col gap-5">
 		<Button on:click={() => addQuestion()} class="max-w-sm" type="button" variant="secondary">
 			Create a question

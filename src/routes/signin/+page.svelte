@@ -78,9 +78,11 @@
 		{#if !formLoading}
 			<CartoonButton type="submit" class="w-full" variant="default">Sign In</CartoonButton>
 		{:else}
-			<CartoonButton type="button" disabled class="w-full">
-				<Reload class="mr-2 h-4 w-4 animate-spin" />
-				Please wait
+			<CartoonButton type="button" disabled class="flex w-full flex-row justify-center">
+				<div class="flex w-full flex-row justify-center">
+					<Reload class="mr-2 h-4 w-4 animate-spin" />
+					Please wait
+				</div>
 			</CartoonButton>
 		{/if}
 		<a href="/signup" class="w-full">
