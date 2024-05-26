@@ -22,7 +22,7 @@
 				<a href="/signup">
 					<CartoonButton color="white">Get Started</CartoonButton>
 				</a>
-				<a href="/about">
+				<a href="/#about">
 					<CartoonButton variant="secondary">Learn More</CartoonButton>
 				</a>
 			</div>
@@ -144,30 +144,40 @@
 	<footer id="about" class="col-span-full grid grid-cols-12 bg-black py-24">
 		<div class="col-span-1"></div>
 		<div class="col-span-10 grid grid-cols-3 items-center gap-5">
-			<div>
+			<div class="col-span-full md:col-span-1">
 				<h4>Banana classroom</h4>
 				<p class="pb-4">© 2024, All rights reserved</p>
 				<span class="muted">Developed By:</span>
 				<ul>
 					<li>
-						<Button variant="link" class="p-0">
+						<Button variant="link" class="w-full justify-start text-wrap p-0">
 							Lead and Frontend Developer: Alferez, Karl Robeck
 						</Button>
 					</li>
 					<li>
-						<Button variant="link" class="p-0">Backend Developer: Morfe, Vien Kendrick</Button>
+						<Button variant="link" class="w-full justify-start text-wrap p-0"
+							>Backend Developer: Morfe, Vien Kendrick</Button
+						>
 					</li>
 					<li>
-						<Button variant="link" class="p-0">Backend Developer: Bergonio, Mhell</Button>
+						<Button variant="link" class="w-full justify-start text-wrap p-0"
+							>Backend Developer: Bergonio, Mhell</Button
+						>
 					</li>
 					<li>
-						<Button variant="link" class="p-0">Backend Developer: Barlaan, Andrei</Button>
+						<Button variant="link" class="w-full justify-start text-wrap p-0"
+							>Backend Developer: Barlaan, Andrei</Button
+						>
 					</li>
 					<li>
-						<Button variant="link" class="p-0">Designer: Toledo, Princess Madeline Joy</Button>
+						<Button variant="link" class="w-full justify-start text-wrap p-0"
+							>Designer: Toledo, Princess Madeline Joy</Button
+						>
 					</li>
 					<li>
-						<Button variant="link" class="p-0">Designer: Chiquillo, Engelois</Button>
+						<Button variant="link" class="w-full justify-start text-wrap p-0"
+							>Designer: Chiquillo, Engelois</Button
+						>
 					</li>
 				</ul>
 			</div>
@@ -180,41 +190,59 @@
 				<span class="muted">Members: </span>
 				<ul>
 					<li>
-						<Button href="/#home" variant="link" class="p-0">
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0">
 							Leader: Rillorta, Charles Steven
 						</Button>
 					</li>
 					<li>
-						<Button href="/#home" variant="link" class="p-0">Puyaoan, Van Christian</Button>
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0"
+							>Puyaoan, Van Christian</Button
+						>
 					</li>
 					<li>
-						<Button href="/#home" variant="link" class="p-0">Cayetano, Francisco</Button>
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0"
+							>Cayetano, Francisco</Button
+						>
 					</li>
 					<li>
-						<Button href="/#home" variant="link" class="p-0">Garcera, Carl Ashley</Button>
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0"
+							>Garcera, Carl Ashley</Button
+						>
 					</li>
 					<li>
-						<Button href="/#home" variant="link" class="p-0">Genavia, Hayron Paul</Button>
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0"
+							>Genavia, Hayron Paul</Button
+						>
 					</li>
 				</ul>
 			</div>
-			<div class="md:justify-self-end">
+			<div class="col-span-full md:col-span-1 md:justify-self-end">
 				<h4 class="p- pb-4">Navigation</h4>
 				<ul class="list-disc">
 					<li>
-						<Button href="/#home" variant="link" class="p-0">Home</Button>
+						<Button href="/#home" variant="link" class="w-full justify-start text-wrap p-0"
+							>Home</Button
+						>
 					</li>
 					<li>
-						<Button href="/#features" variant="link" class="p-0">Features</Button>
+						<Button href="/#features" variant="link" class="w-full justify-start text-wrap p-0"
+							>Features</Button
+						>
 					</li>
 					<li>
-						<Button href="/#roadmap" variant="link" class="p-0">Roadmap</Button>
+						<Button href="/#roadmap" variant="link" class="w-full justify-start text-wrap p-0"
+							>Roadmap</Button
+						>
 					</li>
 					<li>
-						<Button href="/signin" variant="link" class="p-0">Sign in</Button>
+						<Button href="/signin" variant="link" class="w-full justify-start text-wrap p-0"
+							>Sign in</Button
+						>
 					</li>
 					<li>
-						<Button href="/signup" variant="link" class="p-0">Sign Up</Button>
+						<Button href="/signup" variant="link" class="w-full justify-start text-wrap p-0"
+							>Sign Up</Button
+						>
 					</li>
 				</ul>
 			</div>
